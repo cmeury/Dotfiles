@@ -1,0 +1,15 @@
+[user]
+	name = Cedric Meury
+	email = c.meury@netbreeze.ch
+
+[alias]
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --max-count=7
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	type = cat-file -t
+	dump = cat-file -p
+
+[merge]
+	tool = vimdiff
