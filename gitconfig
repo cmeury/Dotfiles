@@ -1,6 +1,6 @@
 [user]
 	name = Cedric Meury
-	email = c.meury@netbreeze.ch
+	email = cedric@meury.com
 
 [alias]
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --max-count=7
