@@ -18,6 +18,8 @@ let s:blue = "4271ae"
 let s:purple = "8959a8"
 let s:window = "efefef"
 
+set diffopt+=iwhite
+
 set background=dark
 hi clear
 syntax reset
