@@ -3,7 +3,7 @@
 	email = cedric@meury.com
 
 [alias]
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --max-count=7
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=10
 	co = checkout
 	ci = commit
 	st = status
