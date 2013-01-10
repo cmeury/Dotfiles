@@ -119,3 +119,4 @@ export PS1="\[\e]0;\u@\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\u@\h\
 
 export EDITOR=vi
 
+set -o vi
