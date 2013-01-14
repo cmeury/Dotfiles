@@ -3,7 +3,9 @@
 	email = cedric@meury.com
 
 [alias]
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=10
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=7
+	lg = log --graph --full-history --all --color --pretty=format:\"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s\"
+	lg3 = log --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit
 	co = checkout
 	ci = commit
 	st = status
