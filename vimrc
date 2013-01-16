@@ -1,3 +1,15 @@
+set diffopt+=iwhite
+set background=dark
+set nocompatible
+filetype on
+set nu
+set nowrap
+set ts=2
+set bs=2
+"set list
+
+
+
 " Tomorrow - Full Colour and 256 Colour
 " http://chriskempson.com
 "
@@ -18,9 +30,6 @@ let s:blue = "4271ae"
 let s:purple = "8959a8"
 let s:window = "efefef"
 
-set diffopt+=iwhite
-
-set background=dark
 hi clear
 syntax reset
 
