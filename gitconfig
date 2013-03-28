@@ -11,6 +11,8 @@
 	br = branch
 	type = cat-file -t
 	dump = cat-file -p
+	get = "!git fetch && git status"
+  put = "!git rebase origin && git push origin master"
 
 [merge]
 	tool = vimdiff
@@ -20,3 +22,5 @@
 
 [difftool]
 	prompt = false
+[core]
+	autocrlf = input
