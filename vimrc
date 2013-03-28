@@ -2,7 +2,7 @@ set diffopt+=iwhite
 set background=dark
 set nocompatible
 filetype on
-set nu
+"set nu
 set nowrap
 set ts=2
 set bs=2
