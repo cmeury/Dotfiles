@@ -120,3 +120,12 @@ export PS1="\[\e]0;\u@\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\u@\h\
 export EDITOR=vi
 
 set -o vi
+
+export WORKON_HOME=${HOME}/Snakepit
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    source /usr/bin/virtualenvwrapper.sh
+fi
+
+
