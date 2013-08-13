@@ -9,16 +9,17 @@
 	ci = commit
 	st = status
 	br = branch
+  cp = cherry-pick
 	type = cat-file -t
 	dump = cat-file -p
 	get = "!git fetch && git status"
   put = "!git rebase origin && git push origin master"
 
 [merge]
-	tool = vimdiff
+	tool = meld
 
 [diff]
-	tool = vimdiff
+	tool = meld
 
 [difftool]
 	prompt = false
