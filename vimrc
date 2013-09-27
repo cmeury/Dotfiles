@@ -4,9 +4,9 @@ set nocompatible
 filetype on
 "set nu
 set nowrap
-set ts=4
+set ts=2
 set bs=2
-set shiftwidth=4
+set shiftwidth=2
 set smartindent
 set expandtab
 "set list
