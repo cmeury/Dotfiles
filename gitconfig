@@ -8,6 +8,7 @@
 	co = checkout
 	ci = commit
 	st = status
+	sp = status --porcelain
 	br = branch
   cp = cherry-pick
 	type = cat-file -t
@@ -28,3 +29,6 @@
 	prompt = false
 [core]
 	autocrlf = input
+
+[push]
+	default = simple
