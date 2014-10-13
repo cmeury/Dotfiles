@@ -13,8 +13,6 @@
   cp = cherry-pick
 	type = cat-file -t
 	dump = cat-file -p
-	get = "!git fetch && git status"
-  put = "!git rebase origin && git push origin master"
   wtf = blame
 
 [merge]
@@ -28,8 +26,12 @@
 
 [difftool]
 	prompt = false
+
 [core]
 	autocrlf = input
 
 [push]
 	default = simple
+
+[pull]
+	ff = only

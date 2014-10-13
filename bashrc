@@ -90,6 +90,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias vi='vim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -127,7 +128,7 @@ parse_git_branch() {
 unset PS1
 export PS1="\[\e]0;\u@\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\u@\h\[\033[01;34m\] \w\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
 
-export EDITOR=vi
+export EDITOR=vim
 
 set -o vi
 
@@ -139,3 +140,8 @@ elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
 fi
 
 
+alias ppv='puppet parser validate'
+
+alias such=git
+alias very=git
+alias wow='git status' 
