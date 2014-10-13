@@ -145,3 +145,8 @@ alias ppv='puppet parser validate'
 alias such=git
 alias very=git
 alias wow='git status' 
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/Dotfiles/bin" ]; then
+  PATH="$HOME/Dotfiles/bin:$PATH"
+fi
