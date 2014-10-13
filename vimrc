@@ -2,7 +2,7 @@ set autowrite
 set diffopt+=iwhite
 set nocompatible
 filetype on
-set nonu
+set nu
 set paste
 set nowrap
 set ts=2
@@ -24,3 +24,8 @@ syntax enable
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+
+
+" Status Line
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%{fugitive#statusline()}%=%c,%l/%L\ %P
+set laststatus=2
