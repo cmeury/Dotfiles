@@ -129,6 +129,7 @@ unset PS1
 export PS1="\[\e]0;\u@\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\u@\h\[\033[01;34m\] \w\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
 
 export EDITOR=vim
+export DIFFPROG=meld
 
 set -o vi
 
@@ -150,3 +151,6 @@ alias wow='git status'
 if [ -d "$HOME/Dotfiles/bin" ]; then
   PATH="$HOME/Dotfiles/bin:$PATH"
 fi
+
+# configure autojump
+test -r /etc/profile.d/autojump.bash && . /etc/profile.d/autojump.bash 
