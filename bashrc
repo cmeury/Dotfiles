@@ -152,5 +152,7 @@ if [ -d "$HOME/Dotfiles/bin" ]; then
   PATH="$HOME/Dotfiles/bin:$PATH"
 fi
 
-# configure autojump
-test -r /etc/profile.d/autojump.bash && . /etc/profile.d/autojump.bash 
+PATH="$PATH:/home/ced/.gem/ruby/2.1.0/bin:/home/ced/.gem/ruby/2.2.0/bin"
+
+export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
+

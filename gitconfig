@@ -14,6 +14,7 @@
 	type = cat-file -t
 	dump = cat-file -p
   wtf = blame
+  staged = diff --cached --color
 
 [merge]
 	tool = meld
@@ -34,6 +35,6 @@
 	default = simple
 
 [pull]
-	ff = only
+#	ff = only
 [log]
 	date = local
