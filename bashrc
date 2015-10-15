@@ -3,7 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ $- != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -152,7 +152,6 @@ if [ -d "$HOME/Dotfiles/bin" ]; then
   PATH="$HOME/Dotfiles/bin:$PATH"
 fi
 
-PATH="$PATH:/home/ced/.gem/ruby/2.1.0/bin:/home/ced/.gem/ruby/2.2.0/bin"
-
+PATH="$PATH:/home/cemeury/.gem/ruby/2.1.0/bin:/home/cemeury/.gem/ruby/2.2.0/bin"
 export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 
