@@ -18,6 +18,7 @@
 
 [merge]
 	tool = meld
+#	ff = false
 
 [mergetool]	
 	keepBackup = false
