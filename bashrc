@@ -155,3 +155,8 @@ fi
 PATH="$PATH:/home/cemeury/.gem/ruby/2.1.0/bin:/home/cemeury/.gem/ruby/2.2.0/bin"
 export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 
+# todo.txt
+source ${HOME}/Dotfiles/bin/todo_completion
+alias t="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg"
+complete -F _todo t
+export TODOTXT_DEFAULT_ACTION=ls
