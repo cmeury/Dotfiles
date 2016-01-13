@@ -158,5 +158,8 @@ export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 # todo.txt
 source ${HOME}/Dotfiles/bin/todo_completion
 alias t="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg"
+alias th="${HOME}/Dotfiles/bin/todo-context.sh @home -d ${HOME}/Dotfiles/bin/todo.cfg"
+alias to="${HOME}/Dotfiles/bin/todo-context.sh @oms -d ${HOME}/Dotfiles/bin/todo.cfg"
+alias tw="${HOME}/Dotfiles/bin/todo-context.sh @work -d ${HOME}/Dotfiles/bin/todo.cfg"
 complete -F _todo t
 export TODOTXT_DEFAULT_ACTION=ls
