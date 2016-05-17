@@ -149,7 +149,7 @@ alias wow='git status'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/Dotfiles/bin" ]; then
-  PATH="$HOME/Dotfiles/bin:$PATH"
+  PATH="$HOME/Dotfiles/bin:$HOME/bin:$PATH"
 fi
 
 PATH="$PATH:/home/cemeury/.gem/ruby/2.1.0/bin:/home/cemeury/.gem/ruby/2.2.0/bin"
@@ -164,3 +164,6 @@ alias to="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg ls @o"
 alias standup="t standup @w"
 complete -F _todo t
 export TODOTXT_DEFAULT_ACTION=ls
+
+# Activate Amazon Web Service CLI bash completion
+complete -C aws_completer aws
