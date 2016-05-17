@@ -2,15 +2,16 @@ set nocompatible
 filetype off
 
 " set the runtime path to include Vundle and initialize
-
-set rtp+=~/.vim/vundle
-call vundle#begin('~/.vim/bundle')
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" git integration
 Plugin 'tpope/vim-fugitive'
+
+" ultisnips
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,3 +48,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/bundle/vim-snippets/UltiSnips']
+
