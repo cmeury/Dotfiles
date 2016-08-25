@@ -9,9 +9,8 @@ Plugin 'VundleVim/Vundle.vim'
 " git integration
 Plugin 'tpope/vim-fugitive'
 
-" ultisnips
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+" dutyl dlang
+Plugin 'idanarye/vim-dutyl'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -39,15 +38,5 @@ syntax enable
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%{fugitive#statusline()}%=%c,%l/%L\ %P
 set laststatus=2
 
-" UltiSnips configuration
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/bundle/vim-snippets/UltiSnips']
-
+" datyl
+let g:dutyl_stdImportPaths=['/usr/local/Cellar/dmd/2.071.0_1/include/dlang/dmd']
