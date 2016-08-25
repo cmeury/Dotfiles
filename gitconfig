@@ -39,3 +39,5 @@
 #	ff = only
 [log]
 	date = local
+[url "https://"]
+	insteadOf = git://
