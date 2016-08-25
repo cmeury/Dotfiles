@@ -155,6 +155,9 @@ fi
 PATH="$PATH:/home/cemeury/.gem/ruby/2.1.0/bin:/home/cemeury/.gem/ruby/2.2.0/bin"
 export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 
+# Set path to include local bin/ directories for bundler binstubs
+PATH="$PATH:./bin"
+
 # todo.txt
 source ${HOME}/Dotfiles/bin/todo_completion
 alias t="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg"
