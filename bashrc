@@ -129,7 +129,7 @@ unset PS1
 export PS1="\[\e]0;\u@\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\u@\h\[\033[01;34m\] \w\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
 
 export EDITOR=vim
-export DIFFPROG=meld
+export DIFFPROG=vimdiff
 
 set -o vi
 
@@ -139,13 +139,6 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
     source /usr/bin/virtualenvwrapper.sh
 fi
-
-
-alias ppv='puppet parser validate'
-
-alias such=git
-alias very=git
-alias wow='git status' 
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/Dotfiles/bin" ]; then
@@ -158,15 +151,6 @@ export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 # Set path to include local bin/ directories for bundler binstubs
 PATH="$PATH:./bin"
 
-# todo.txt
-source ${HOME}/Dotfiles/bin/todo_completion
-alias t="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg"
-alias tw="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg ls @w"
-alias th="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg ls @h"
-alias to="${HOME}/Dotfiles/bin/todo.sh -d ${HOME}/Dotfiles/bin/todo.cfg ls @o"
-alias standup="t standup @w"
-complete -F _todo t
-export TODOTXT_DEFAULT_ACTION=ls
-
 # Activate Amazon Web Service CLI bash completion
 complete -C aws_completer aws
+
