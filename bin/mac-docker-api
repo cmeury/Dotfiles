@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ -z $(which socat) ]]; then
+  echo "needs socat: brew install socat"
+  exit 1
+fi
+PORT=8099
+SOCKET=/var/run/docker.sock
+echo "Setting up socket ${SOCKET} to be reachable via: tcp://127.0.0.1:${PORT}"
+socat TCP-L:${PORT},fork UNIX:${SOCKET}
