@@ -41,3 +41,5 @@
 	date = local
 [url "https://"]
 	insteadOf = git://
+[credential]
+	helper = osxkeychain
