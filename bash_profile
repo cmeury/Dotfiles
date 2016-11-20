@@ -14,3 +14,5 @@ fi
 if [ -f /Users/ced/app/google-cloud-sdk/completion.bash.inc ]; then
   source '/Users/ced/app/google-cloud-sdk/completion.bash.inc'
 fi
+
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
