@@ -149,7 +149,11 @@ PATH="$PATH:/home/cemeury/.gem/ruby/2.1.0/bin:/home/cemeury/.gem/ruby/2.2.0/bin"
 export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 
 # Set path to include local bin/ directories for bundler binstubs
-PATH="$PATH:./bin"
+export PATH="$PATH:./bin"
+
+# Go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
 
 # Activate Amazon Web Service CLI bash completion
 complete -C aws_completer aws
