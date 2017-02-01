@@ -140,6 +140,16 @@ elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
     source /usr/bin/virtualenvwrapper.sh
 fi
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/ced/app/google-cloud-sdk/path.bash.inc ]; then
+  source '/Users/ced/app/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/ced/app/google-cloud-sdk/completion.bash.inc ]; then
+  source '/Users/ced/app/google-cloud-sdk/completion.bash.inc'
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/Dotfiles/bin" ]; then
   PATH="$HOME/Dotfiles/bin:$HOME/bin:$PATH"
@@ -158,3 +168,5 @@ export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
 # Activate Amazon Web Service CLI bash completion
 complete -C aws_completer aws
 
+alias k='kubectl'
+alias kd='kubectl --namespace=deis'
