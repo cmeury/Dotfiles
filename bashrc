@@ -169,4 +169,8 @@ export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
 complete -C aws_completer aws
 
 alias k='kubectl'
-alias kd='kubectl --namespace=deis'
+alias kc='kubectl config'
+alias kcu='kubectl config use-context'
+alias kcg='kubectl config get-contexts'
+alias kd='kubectl describe'
+alias kg='kubectl get'
