@@ -1,0 +1,17 @@
+#!/bin/bash
+if hash pygmentize 2>/dev/null; then
+  echo "Pygments is needed for this script to run: http://pygments.org/"
+  echo "If Pygments is already installed, the command might also have failed for other reasons. Try running pygmentize by itself to check."
+  exit 1
+fi
+if [ ! -t 0 ]; then
+  file=/dev/stdin
+elif [ -f $1 ]; then
+  file=$1
+else
+  echo "Usage: $0 code.c"
+  echo "or e.g. head code.c|$0"
+  exit 1
+fi
+pygmentize -f terminal -g $file
+
