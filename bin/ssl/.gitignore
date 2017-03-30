@@ -1,3 +1,6 @@
+*.zip
+*.pfx
+*.ca-bundle
 *.key
 *.csr
 *.crt
