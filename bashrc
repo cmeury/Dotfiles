@@ -112,6 +112,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# and for macOS
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  source $(brew --prefix)/etc/bash_completion
+fi
+
 find_git_dirty() {
   local status=$(git status --porcelain 2> /dev/null)
   if [[ "$status" != "" ]]; then
@@ -174,3 +179,7 @@ alias kcu='kubectl config use-context'
 alias kcg='kubectl config get-contexts'
 alias kd='kubectl describe'
 alias kg='kubectl get'
+
+# kubectl shell completion
+source "${HOME}/.completion.bash.inc"
+
