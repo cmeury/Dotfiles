@@ -75,16 +75,32 @@ parse_git_branch() {
 }
 parse_kube_ctx()
 {
-    # Get current context
-    CONTEXT=$(cat ~/.kube/config | grep "current-context:" | sed "s/current-context: //")
+    CONTEXT=$(kubectl config current-context)
 
     if [ -n "$CONTEXT" ]; then
         echo " [${CONTEXT}]"
     fi
 }
+parse_kube_ns()
+{
+  current=$(kubectl config current-context)
+  contextinfo=$(kubectl config get-contexts --no-headers $current)
+
+  # Prevent globbing of asterisk
+  set -f
+  namespace=$(echo $contextinfo | awk "{print \$5}")
+  cluster=$(echo $contextinfo | awk "{print \$3}")
+  set +f
+
+  if [ -z "$namespace" ]; then
+    namespace="default"
+  fi
+  echo " [${namespace}@${cluster}]"
+}
+
 
 unset PS1
-export PS1="\[\e]0;\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\[\033[01;34m\] \w\[\033[92m\]\$(parse_kube_ctx)\[\033[00m\]\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
+export PS1="\[\e]0;\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\[\033[01;34m\] \w\[\033[92m\]\$(parse_kube_ns)\[\033[00m\]\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
 
 export EDITOR=vim
 export DIFFPROG=vimdiff
