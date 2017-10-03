@@ -83,11 +83,9 @@ parse_kube_ctx()
 }
 parse_kube_ns()
 {
-  current=$(kubectl config current-context)
-  contextinfo=$(kubectl config get-contexts --no-headers $current)
-
   # Prevent globbing of asterisk
   set -f
+  contextinfo=$(kubectl config get-contexts --no-headers | grep ^*)
   namespace=$(echo $contextinfo | awk "{print \$5}")
   cluster=$(echo $contextinfo | awk "{print \$3}")
   set +f
