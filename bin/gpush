@@ -1,0 +1,26 @@
+#!/bin/sh
+
+if [[ $# -lt 1 ]]; then
+  REMOTE='origin'
+else
+  REMOTE=$1
+fi
+
+if [ "$REMOTE" = "--help" ]; then
+  echo "usage: $0 [<upstream name>]"
+  exit 1
+fi
+
+CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+
+GIT_EXIT_CODE=$?
+
+if [[ $GIT_EXIT_CODE -ne 0 ]]; then
+  echo "git exit code $GIT_EXIT_CODE, not pushing anything."
+  exit 2
+fi
+
+echo "Pushing to remote $REMOTE, branch $CURRENT_BRANCH"
+
+git push -u $REMOTE $CURRENT_BRANCH
+
