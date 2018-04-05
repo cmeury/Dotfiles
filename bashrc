@@ -88,12 +88,13 @@ parse_kube_ns()
   contextinfo=$(kubectl config get-contexts --no-headers | grep ^*)
   namespace=$(echo $contextinfo | awk "{print \$5}")
   cluster=$(echo $contextinfo | awk "{print \$3}")
+  context=$(echo $contextinfo | awk "{print \$2}")
   set +f
 
   if [ -z "$namespace" ]; then
     namespace="default"
   fi
-  echo " [${namespace}@${cluster}]"
+  echo " [${namespace}@${context}]"
 }
 
 
@@ -144,3 +145,15 @@ complete -C aws_completer aws
 # kubectl shell completion
 source "${HOME}/.completion.bash.inc"
 
+# Confirmation
+confirm() {
+  read -r -p "Are you sure? [y/N] " response
+  if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+  then
+      true
+  else
+      false
+  fi
+}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
