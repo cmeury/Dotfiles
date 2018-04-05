@@ -11,9 +11,6 @@ alias vi='vim'
 # git
 alias g='git'
 
-# ack
-alias ack='ack --ignore-dir vendor'
-
 # grep
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
