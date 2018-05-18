@@ -99,7 +99,7 @@ parse_kube_ns()
 
 
 unset PS1
-export PS1="\[\e]0;\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\[\033[01;34m\] \w\[\033[92m\]\$(parse_kube_ns)\[\033[00m\]\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
+export PS1=" \D{%T}\[\e]0;\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\[\033[01;34m\] \w\[\033[92m\]\$(parse_kube_ns)\[\033[00m\]\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
 
 export EDITOR=vim
 export DIFFPROG=vimdiff
