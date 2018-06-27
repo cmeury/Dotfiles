@@ -1,1 +1,5 @@
---ignore-dir=.wercker --ignore-dir=vendor
+--ignore-directory=is:.wercker
+--ignore-directory=is:.git
+--ignore-directory=is:vendor
+--ignore-directory=is:build
+
