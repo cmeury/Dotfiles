@@ -1,0 +1,46 @@
+#!/bin/sh
+
+if [[ $# -lt 1 ]]; then
+  REMOTE='origin'
+else
+  REMOTE=$1
+fi
+
+if [ "$REMOTE" = "--help" ]; then
+  echo "usage: $0 [<target-branch>]"
+  echo "  target-branch     Show comparison on github webpage of current branch with the specified"
+  echo "                    branch. If the branch is not specified, master branch."
+  exit 1
+fi
+
+GITHUB_REPO_PATH=`git remote -v | head -n 1 | awk '{print $2}' | sed 's/.git$//' | cut -d: -f2`
+GIT_EXIT_CODE=$?
+if [[ $GIT_EXIT_CODE -ne 0 ]]; then
+  echo "Cannot retrieve github path, exit code: $GIT_EXIT_CODE"
+  exit 2
+fi
+
+gpush
+GIT_EXIT_CODE=$?
+if [[ $GIT_EXIT_CODE -ne 0 ]]; then
+  echo "Could not push branch to origin"
+  exit 2
+fi
+
+
+CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+GIT_EXIT_CODE=$?
+if [[ $GIT_EXIT_CODE -ne 0 ]]; then
+  echo "Cannot retrieve current branch name, exit code: $GIT_EXIT_CODE"
+  exit 2
+fi
+
+if [[ $# -ge 1 ]]; then
+  COMPARE_BRANCH=$1
+else
+  COMPARE_BRANCH='master'
+fi
+
+open "https://github.com/$GITHUB_REPO_PATH/compare/$COMPARE_BRANCH...$CURRENT_BRANCH"
+
+
