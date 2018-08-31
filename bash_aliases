@@ -5,6 +5,8 @@ alias l='ls -CF'
 alias ls='ls -G'
 alias grep='grep --color=auto'
 
+alias ping='prettyping'
+
 # editor
 alias vi='vim'
 
