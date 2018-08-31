@@ -1,11 +1,11 @@
-# ls
+# system tools
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ls='ls -G'
 alias grep='grep --color=auto'
-
 alias ping='prettyping'
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude .wercker"
 
 # editor
 alias vi='vim'
