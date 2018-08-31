@@ -2,6 +2,10 @@
 	name = Cedric Meury
 	email = cedric@meury.com
 
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
+
 [alias]
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=7
 	lg = log --pretty=format:\"%C(red)%h%Creset %C(green)%ad%Creset | %s%C(yellow)%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=iso
@@ -15,6 +19,7 @@
 	dump = cat-file -p
   wtf = blame
   staged = diff --cached --color
+
 
 [merge]
 	tool = meld
@@ -46,3 +51,15 @@
 	helper = osxkeychain
 [diff "sopsdiffer"]
 	textconv = sops -d
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
