@@ -65,15 +65,6 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
-# powerline
-#export LC_ALL=en_US.UTF-8
-#export LANG=en_US.UTF-8
-#export PATH=$PATH:$HOME/Library/Python/2.7/bin
-#powerline-daemon -q
-#POWERLINE_BASH_CONTINUATION=1
-#POWERLINE_BASH_SELECT=1
-#. /Users/ced/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
-
 function _update_ps1() {
     PS1="$($GOPATH/bin/powerline-go -shorten-gke-names -modules "nix-shell,venv,ssh,cwd,perms,gitlite,hg,jobs,exit,root,vgo,kube" -error $?)"
 }
@@ -88,14 +79,15 @@ export DIFFPROG=vimdiff
 set -o vi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f /Users/ced/app/google-cloud-sdk/path.bash.inc ]; then
-  source '/Users/ced/app/google-cloud-sdk/path.bash.inc'
+if [ -f /Users/ced/google-cloud-sdk/path.bash.inc ]; then
+  source '/Users/ced/google-cloud-sdk/path.bash.inc'
 fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f /Users/ced/app/google-cloud-sdk/completion.bash.inc ]; then
-  source '/Users/ced/app/google-cloud-sdk/completion.bash.inc'
+if [ -f /Users/ced/google-cloud-sdk/completion.bash.inc ]; then
+  source '/Users/ced/google-cloud-sdk/completion.bash.inc'
 fi
+
 #fix chrome
 export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 
@@ -117,8 +109,6 @@ confirm() {
 }
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-
 
 _rdp() {
   project=$1
@@ -169,11 +159,3 @@ end tell
   echo -e "$apple_script" | osascript 
 }
 
-
-
-
-
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
