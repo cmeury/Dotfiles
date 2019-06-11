@@ -5,6 +5,19 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
+alias goric='cd ${GOPATH}/src/github.com/ricardo-ch'
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/Dotfiles/bin" ]; then
+  PATH="$HOME/Dotfiles/bin:$HOME/bin:$PATH"
+fi
+
+# Set path to include local bin/ directories for bundler binstubs
+export PATH="$PATH:./bin"
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -13,8 +26,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -52,57 +65,27 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
-find_git_dirty() {
-  local status=$(git status --porcelain 2> /dev/null)
-  if [[ "$status" != "" ]]; then
-    echo '* '
-  else
-    echo ''
-  fi
+# powerline
+#export LC_ALL=en_US.UTF-8
+#export LANG=en_US.UTF-8
+#export PATH=$PATH:$HOME/Library/Python/2.7/bin
+#powerline-daemon -q
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#. /Users/ced/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+
+function _update_ps1() {
+    PS1="$($GOPATH/bin/powerline-go -shorten-gke-names -modules "nix-shell,venv,ssh,cwd,perms,gitlite,hg,jobs,exit,root,vgo,kube" -error $?)"
 }
 
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-parse_kube_ctx()
-{
-    CONTEXT=$(kubectl config current-context)
-
-    if [ -n "$CONTEXT" ]; then
-        echo " [${CONTEXT}]"
-    fi
-}
-parse_kube_ns()
-{
-  # Prevent globbing of asterisk
-  set -f
-  contextinfo=$(kubectl config get-contexts --no-headers | grep ^*)
-  namespace=$(echo $contextinfo | awk "{print \$5}")
-  cluster=$(echo $contextinfo | awk "{print \$3}")
-  context=$(echo $contextinfo | awk "{print \$2}")
-  set +f
-
-  if [ -z "$namespace" ]; then
-    namespace="default"
-  fi
-  echo " [${namespace}@${context}]"
-}
-
-
-unset PS1
-export PS1=" \D{%T}\[\e]0;\h\a\]${debian_chroot:+($debian_chroot)}\[\033[00m\]\[\033[01;34m\] \w\[\033[92m\]\$(parse_kube_ns)\[\033[00m\]\[\033[31m\]\$(parse_git_branch) \[\033[33m\]\$(find_git_dirty)\[\033[00m\]$\[\033[00m\] "
+if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 
 export EDITOR=vim
 export DIFFPROG=vimdiff
 
 set -o vi
-
-export WORKON_HOME=${HOME}/Snakepit
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
-    source /usr/bin/virtualenvwrapper.sh
-fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /Users/ced/app/google-cloud-sdk/path.bash.inc ]; then
@@ -113,22 +96,8 @@ fi
 if [ -f /Users/ced/app/google-cloud-sdk/completion.bash.inc ]; then
   source '/Users/ced/app/google-cloud-sdk/completion.bash.inc'
 fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/Dotfiles/bin" ]; then
-  PATH="$HOME/Dotfiles/bin:$HOME/bin:$PATH"
-fi
-
-PATH="$PATH:/home/cemeury/.gem/ruby/2.1.0/bin:/home/cemeury/.gem/ruby/2.2.0/bin"
+#fix chrome
 export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
-
-# Set path to include local bin/ directories for bundler binstubs
-export PATH="$PATH:./bin"
-
-# Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
-alias goric='cd ${GOPATH}/src/github.com/ricardo-ch'
 
 # Activate Amazon Web Service CLI bash completion
 complete -C aws_completer aws
@@ -149,3 +118,62 @@ confirm() {
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+
+
+_rdp() {
+  project=$1
+  zone=$2
+  vm=$3
+  port=$4
+  try_sleep=3
+  remaining_try=10
+  last_exit_code="1"
+
+  echo "Creating tunnel to project=$project zone=$zone vm=$vm port=$port"
+
+  gcloud beta compute start-iap-tunnel --project $project --zone $zone "$vm" 3389 --local-host-port=localhost:$port &
+
+  # Wait some time before first try
+  sleep $try_sleep
+  while [ ! "$last_exit_code" = "0" -a ! "$remaining_try" = "0" ]
+  do
+    echo "Remaining tries : $remaining_try"
+    let remaining_try--
+
+    nc -vz 127.0.0.1 $port
+    last_exit_code="$?"
+    echo "Last exit code $last_exit_code"
+    
+    # Wait some time before next try
+    sleep $try_sleep
+  done
+
+  apple_script=$(cat <<==apple_script
+tell application "Microsoft Remote Desktop Beta"
+  activate
+  tell application "System Events"
+    set frontmost of process "Microsoft Remote Desktop Beta" to true
+    tell process "Microsoft Remote Desktop Beta"
+      keystroke "f" using {command down}
+      keystroke "$vm" --search query
+      delay 0.5
+      keystroke tab
+      key code 125 -- down
+      key code 36 --enter		
+    end tell
+  end tell
+end tell
+==apple_script
+)
+
+  echo -e "$apple_script" | osascript 
+}
+
+
+
+
+
+
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
