@@ -15,6 +15,7 @@ set shiftwidth=2
 set smartindent
 set expandtab
 set background=dark
+set mmp=5000
 
 syntax enable
 
