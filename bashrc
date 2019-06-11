@@ -10,6 +10,9 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
 alias goric='cd ${GOPATH}/src/github.com/ricardo-ch'
 
+# Python
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/Dotfiles/bin" ]; then
   PATH="$HOME/Dotfiles/bin:$HOME/bin:$PATH"
