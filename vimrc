@@ -4,7 +4,7 @@ filetype off
 filetype plugin indent on    " required
 
 set autowrite
-set diffopt+=iwhite
+" set diffopt+=iwhite
 set nocompatible
 set nu
 set paste

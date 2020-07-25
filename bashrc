@@ -10,13 +10,21 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
 alias goric='cd ${GOPATH}/src/github.com/ricardo-ch'
 
+# GNU tar for Ansible unarchive on MacOS
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:$MANPATH"
+
 # Python
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/python@3.7/libexec/bin:$PATH"
+#export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/Dotfiles/bin" ]; then
   PATH="$HOME/Dotfiles/bin:$HOME/bin:$PATH"
 fi
+
+# Use sbin for mtr
+export PATH="$PATH:/usr/local/sbin"
 
 # Set path to include local bin/ directories for bundler binstubs
 export PATH="$PATH:./bin"
@@ -69,7 +77,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 function _update_ps1() {
-    PS1="$($GOPATH/bin/powerline-go -shorten-gke-names -modules "nix-shell,venv,ssh,cwd,perms,gitlite,hg,jobs,exit,root,vgo,kube" -error $?)"
+    PS1="$($GOPATH/bin/powerline-go -shorten-gke-names -modules "venv,ssh,cwd,perms,git,exit,root" -error $?)"
 }
 
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
