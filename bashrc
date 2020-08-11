@@ -72,7 +72,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # and for macOS
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [[ -e /usr/local/bin/brew && -f $(brew --prefix)/etc/bash_completion ]]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
