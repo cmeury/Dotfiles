@@ -99,6 +99,9 @@ if [ -f /Users/ced/google-cloud-sdk/completion.bash.inc ]; then
   source '/Users/ced/google-cloud-sdk/completion.bash.inc'
 fi
 
+# Bash completion for awscli
+complete -C '/usr/bin/aws_completer' aws
+
 #fix chrome
 export CHROMIUM_USER_FLAGS="--ignore-gpu-blacklist"
 
