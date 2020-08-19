@@ -60,8 +60,8 @@ c_red='^[[31m'
 c_green='^[[32m'
 c_sgr0='^[[00m'
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
 fi
 
 # enable programmable completion features (you don't need to enable
