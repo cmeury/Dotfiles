@@ -14,13 +14,6 @@ alias gc='gcloud'
 alias a='ansible'
 alias ap='ansible-playbook'
 
-# ric (deprecated)
-alias prod="gcloud beta compute ssh adm_cmeury_s10@zrh-srv-p-cfm10 --project ricardo-legacy --ssh-key-file ~/.ssh/ricardo --zone=europe-west1-c --tunnel-through-iap"
-alias dev="gcloud beta compute ssh adm_cmeury_s10@zrh-srv-b-cfm10 --project ricardo-dev-legacy --ssh-key-file ~/.ssh/ricardo --zone=europe-west1-b --tunnel-through-iap"
-alias goric='cd ${GOPATH}/src/github.com/ricardo-ch'
-alias rdp_beta="_rdp ricardo-dev-legacy europe-west1-b zrh-srv-b-jump10 3390 "
-alias rdp_prod="_rdp ricardo-legacy europe-west1-c rm-sv-jmp01 3391"
-
 # editor
 alias vi='vim'
 

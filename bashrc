@@ -8,7 +8,6 @@
 # Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
-alias goric='cd ${GOPATH}/src/github.com/ricardo-ch'
 
 # GNU tar for Ansible unarchive on MacOS
 export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"

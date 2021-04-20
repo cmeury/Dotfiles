@@ -11,7 +11,6 @@ COUNTRY=CH
 STATE=ZG
 CITY=Zug
 #CITY=Zurich
-ORGANIZATION="ricardo.ch AG"
-#ORGANIZATION="Tamedia AG"
+ORGANIZATION="companyName"
 openssl req -nodes -newkey rsa:2048 -keyout $hostname.key -out $hostname.csr -subj "/C=${COUNTRY}/ST=${STATE}/L=${CITY}/O=${ORGANIZATION}/OU=${ORGANIZATION}/CN=${hostname}" 
 

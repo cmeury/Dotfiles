@@ -22,8 +22,6 @@ alias java12='export JAVA_HOME=$JAVA_12_HOME'
 
 export PATH="/usr/local/opt/terraform@0.11/bin:$PATH"
 
-export PATH="${HOME}/.ricardo/delivery/bin:${PATH}"
-
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 #export ANSIBLE_CONFIG="${HOME}/netsec/ansible.cfg"
