@@ -88,6 +88,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status)
 # export MANPATH="/usr/local/man:$MANPATH"
 
 path+=('/Users/ced/bin')
+path+=('/Users/ced/go/bin')
 path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path) # GNU tools from homebrew
 # export to sub-processes (make it inherited by child processes)
 export PATH
@@ -104,6 +105,8 @@ export PATH
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
