@@ -121,3 +121,9 @@ source $HOME/.aliases
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ced/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ced/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ced/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ced/google-cloud-sdk/completion.zsh.inc'; fi
