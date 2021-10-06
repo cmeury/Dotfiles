@@ -92,7 +92,9 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status)
 path+=("$HOME/bin")
 path+=("$HOME/go/bin")
 path+=("$HOME/Library/Python/3.8/bin")
-path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path) # GNU tools from homebrew
+path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path)  # GNU tools from homebrew
+path=('/opt/homebrew/opt/libpq/bin' $path)            # psql and other tools
+
 # export to sub-processes (make it inherited by child processes)
 export PATH
 
