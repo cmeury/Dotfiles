@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/ced/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,6 +77,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker history minikube)
+plugins+=(zsh-vi-mode)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,8 +89,9 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-path+=('/Users/ced/bin')
-path+=('/Users/ced/go/bin')
+path+=("$HOME/bin")
+path+=("$HOME/go/bin")
+path+=("$HOME/Library/Python/3.8/bin")
 path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path) # GNU tools from homebrew
 # export to sub-processes (make it inherited by child processes)
 export PATH
@@ -123,7 +126,7 @@ source $HOME/.aliases
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ced/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ced/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/ced/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ced/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
