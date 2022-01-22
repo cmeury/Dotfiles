@@ -10,7 +10,9 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclu
 # various commands
 alias v='vagrant'
 alias tf='terraform'
+alias tg='terragrunt'
 alias gc='gcloud'
+alias gcca='gcloud config configurations activate'
 alias a='ansible'
 alias ap='ansible-playbook'
 
@@ -26,9 +28,11 @@ alias egrep='egrep --color=auto'
 	
 # kubernetes
 alias kk='HTTPS_PROXY=localhost:8888 kubectl'
+alias kkns='HTTPS_PROXY=localhost:8888 kns'
 alias kk9s='HTTPS_PROXY=localhost:8888 k9s'
 alias kk9r='HTTPS_PROXY=localhost:8888 k9s --readonly'
 alias kstern='HTTPS_PROXY=localhost:8888 stern'
+alias khelm='HTTPS_PROXY=localhost:8888 helm'
 alias k='kubectl'
 alias kc='kubectl config'
 alias kpf='kubectl port-forward'
