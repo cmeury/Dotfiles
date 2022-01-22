@@ -1,6 +1,6 @@
 [user]
 	name = Cedric Meury
-	email = cedric@meury.com
+	email = cedric.meury@well.ch
 
 # brew install diff-so-fancy
 [pager]
@@ -43,7 +43,7 @@
 	default = simple
 
 [pull]
-	rebase = false
+	rebase = true
 #	ff = only
 [log]
 	date = local
