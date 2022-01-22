@@ -11,6 +11,7 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclu
 alias v='vagrant'
 alias tf='terraform'
 alias tg='terragrunt'
+alias tgy='terragrunt -auto-approve' # careful
 alias gc='gcloud'
 alias gcca='gcloud config configurations activate'
 alias a='ansible'
