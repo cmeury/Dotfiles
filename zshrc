@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker history minikube)
+plugins=(git docker history minikube gcloud)
 plugins+=(zsh-vi-mode)
 
 
@@ -89,8 +89,13 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# fixing the error: 'there was a problem with the editor "vi"' when running kubectl edit
+export KUBE_EDITOR="vim"
+
+export GOPATH=$HOME/go
+
 path+=("$HOME/bin")
-path+=("$HOME/go/bin")
+path+=("$GOPATH/bin")
 path+=("$HOME/Library/Python/3.8/bin")
 path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path)  # GNU tools from homebrew
 path=('/opt/homebrew/opt/libpq/bin' $path)            # psql and other tools
@@ -132,3 +137,4 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
