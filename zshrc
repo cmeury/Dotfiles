@@ -94,11 +94,12 @@ export KUBE_EDITOR="vim"
 
 export GOPATH=$HOME/go
 
-path+=("$HOME/bin")
 path+=("$GOPATH/bin")
 path+=("$HOME/Library/Python/3.8/bin")
 path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path)  # GNU tools from homebrew
 path=('/opt/homebrew/opt/libpq/bin' $path)            # psql and other tools
+path=("$HOME/bin" $path)                              # ensure we are using executables in home dir before system ones
+path+=("$HOME/code/devops/infrastructure/runbooks/connect")
 
 # export to sub-processes (make it inherited by child processes)
 export PATH
@@ -137,4 +138,7 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+# disable history sharing between sessions (https://github.com/ohmyzsh/ohmyzsh/issues/2537)
+unsetopt share_history
 

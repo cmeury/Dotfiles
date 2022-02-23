@@ -11,7 +11,11 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclu
 alias v='vagrant'
 alias tf='terraform'
 alias tg='terragrunt'
-alias tgy='terragrunt -auto-approve' # careful
+alias tgp='terragrunt plan'
+alias tga='terragrunt apply'
+alias tgar='terragrunt apply -refresh-only'
+alias tgary='terragrunt apply -refresh-only -auto-approve'
+alias tgay='terragrunt apply -auto-approve' # careful
 alias gc='gcloud'
 alias gcca='gcloud config configurations activate'
 alias a='ansible'
@@ -48,6 +52,7 @@ alias kdel='kubectl delete'
 alias kkill='kubectl delete --force --grace-period=0 pod'
 alias kg='kubectl get'
 alias kgp='kubectl get pods -o wide'
+alias kgpt="kubectl get pods -o wide | grep -v -E '(Terminated|NodeShutdown)'"
 alias kgpa='kubectl get pods -o wide --all-namespaces'
 alias kgpar="kubectl get pods -o wide --all-namespaces | grep -v -E '(Running|Completed)'"
 alias kgps="kubectl get pods -o wide --all-namespaces --sort-by='{.status.containerStatuses[:1].restartCount}'"
@@ -56,6 +61,8 @@ alias svcgrep='kubectl get service --all-namespaces | grep '
 alias kl='kubectl logs --follow=true'
 alias i='istioctl'
 alias mk='minikube'
+
+alias ybat="bat -l yaml"
 
 # getting crazy with kubectl
 ked(){
@@ -76,8 +83,11 @@ alias gp='git pull'
 alias gs='git status'
 
 # dirs
-alias n='cd ${HOME}/netsec'
-alias nsa='cd ${HOME}/netsec/scionlab-ansible'
-alias nna='cd ${HOME}/netsec/netsec-ansible'
-alias nst='cd ${HOME}/netsec/scion-tutorials'
+alias cit='cd ${HOME}/code/devops/infrastructure/terraform'
+alias cir='cd ${HOME}/code/devops/infrastructure/runbooks'
+alias cdd='cd ${HOME}/code/devops/deploy'
+alias cdc='cd ${HOME}/code/devops/cluster-services'
+alias cdb='cd ${HOME}/code/well-backend'
 
+# custom
+alias delgka='kubectl get -n=gitlab-kubernetes-agent po -l app=gitlab-agent -o=name | xargs kubectl delete -n=gitlab-kubernetes-agent'
