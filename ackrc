@@ -2,4 +2,6 @@
 --ignore-directory=is:.git
 --ignore-directory=is:vendor
 --ignore-directory=is:build
+--ignore-directory=is:.terragrunt-cache
+
 
