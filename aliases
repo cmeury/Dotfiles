@@ -63,6 +63,9 @@ alias i='istioctl'
 alias mk='minikube'
 
 alias ybat="bat -l yaml"
+yfilt() {
+  kfilt -i kind="${1}" | bat -l yaml
+}
 
 # getting crazy with kubectl
 ked(){
@@ -88,6 +91,7 @@ alias cir='cd ${HOME}/code/devops/infrastructure/runbooks'
 alias cdd='cd ${HOME}/code/devops/deploy'
 alias cdc='cd ${HOME}/code/devops/cluster-services'
 alias cdb='cd ${HOME}/code/well-backend'
+alias cdf='cd ${HOME}/code/well-mobile-frontend'
 
 # custom
 alias delgka='kubectl get -n=gitlab-kubernetes-agent po -l app=gitlab-agent -o=name | xargs kubectl delete -n=gitlab-kubernetes-agent'
