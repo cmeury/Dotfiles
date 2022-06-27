@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker history minikube gcloud)
+plugins=(git docker history gcloud)
 plugins+=(zsh-vi-mode)
 
 
@@ -96,10 +96,12 @@ export GOPATH=$HOME/go
 
 path+=("$GOPATH/bin")
 path+=("$HOME/Library/Python/3.8/bin")
+path+=("$HOME/.local/bin")
 path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path)  # GNU tools from homebrew
 path=('/opt/homebrew/opt/libpq/bin' $path)            # psql and other tools
 path=("$HOME/bin" $path)                              # ensure we are using executables in home dir before system ones
 path+=("$HOME/code/devops/infrastructure/runbooks/connect")
+path+=("$HOME/code/devops/infrastructure/runbooks/psql-debug")
 
 # export to sub-processes (make it inherited by child processes)
 export PATH
@@ -146,3 +148,5 @@ unsetopt share_history
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
