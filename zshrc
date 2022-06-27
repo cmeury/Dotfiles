@@ -35,10 +35,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=90
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker history gcloud)
+plugins=(git docker history)
 plugins+=(zsh-vi-mode)
 
 
@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context vcs dir)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status)
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -100,6 +100,7 @@ path+=("$HOME/.local/bin")
 path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path)  # GNU tools from homebrew
 path=('/opt/homebrew/opt/libpq/bin' $path)            # psql and other tools
 path=("$HOME/bin" $path)                              # ensure we are using executables in home dir before system ones
+path=("$HOME/Dotfiles/bin" $path)                              # ensure we are using executables in home dir before system ones
 path+=("$HOME/code/devops/infrastructure/runbooks/connect")
 path+=("$HOME/code/devops/infrastructure/runbooks/psql-debug")
 
@@ -148,5 +149,4 @@ unsetopt share_history
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 
