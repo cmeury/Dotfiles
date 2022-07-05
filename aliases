@@ -94,7 +94,7 @@ alias cdb='cd ${HOME}/code/well-backend'
 alias cdf='cd ${HOME}/code/well-mobile-frontend'
 
 # custom
-alias delgka='kubectl get -n=gitlab-kubernetes-agent po -l app=gitlab-agent -o=name | xargs kubectl delete -n=gitlab-kubernetes-agent'
+alias delgka='kubectl get -n=gitlab-agent po -l app=gitlab-agent -o=name | xargs kubectl delete -n=gitlab-agent'
 
 # workaround for https://github.com/derailed/k9s/issues/1151
 alias k9sn="k9s -n $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)"
