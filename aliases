@@ -32,12 +32,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 	
 # kubernetes
-alias kk='HTTPS_PROXY=localhost:8888 kubectl'
-alias kkns='HTTPS_PROXY=localhost:8888 kns'
-alias kk9s='HTTPS_PROXY=localhost:8888 k9s'
-alias kk9r='HTTPS_PROXY=localhost:8888 k9s --readonly'
-alias kstern='HTTPS_PROXY=localhost:8888 stern'
-alias khelm='HTTPS_PROXY=localhost:8888 helm'
+alias k9r='HTTPS_PROXY=localhost:8888 k9s --readonly'
 alias k='kubectl'
 alias kc='kubectl config'
 alias kpf='kubectl port-forward'
@@ -96,5 +91,3 @@ alias cdf='cd ${HOME}/code/well-mobile-frontend'
 # custom
 alias delgka='kubectl get -n=gitlab-agent po -l app=gitlab-agent -o=name | xargs kubectl delete -n=gitlab-agent'
 
-# workaround for https://github.com/derailed/k9s/issues/1151
-alias k9sn="k9s -n $(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)"
