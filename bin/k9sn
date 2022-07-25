@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# workaround for https://github.com/derailed/k9s/issues/1151
+k9s -n "$(kubectl config view --minify --output 'jsonpath={..namespace}')"
+
