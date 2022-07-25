@@ -150,3 +150,4 @@ unsetopt share_history
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
