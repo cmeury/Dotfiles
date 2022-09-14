@@ -79,8 +79,10 @@ ked(){
 alias g='git'
 alias gp='git pull'
 alias gs='git status'
+alias gskip='git push -o ci.skip'
 
 # dirs
+alias ci='cd ${HOME}/code/devops/infrastructure/'
 alias cit='cd ${HOME}/code/devops/infrastructure/terraform'
 alias cir='cd ${HOME}/code/devops/infrastructure/runbooks'
 alias cdd='cd ${HOME}/code/devops/deploy'
