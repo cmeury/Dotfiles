@@ -103,6 +103,10 @@ path=("$HOME/bin" $path)                              # ensure we are using exec
 path=("$HOME/Dotfiles/bin" $path)                              # ensure we are using executables in home dir before system ones
 path+=("$HOME/code/devops/infrastructure/runbooks/connect")
 path+=("$HOME/code/devops/infrastructure/runbooks/psql-debug")
+path+=("${KREW_ROOT:-$HOME/.krew}/bin")
+
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # export to sub-processes (make it inherited by child processes)
 export PATH
