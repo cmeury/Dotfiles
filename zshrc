@@ -155,3 +155,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+# direnv hook - https://direnv.net/
+eval "$(direnv hook zsh)"
