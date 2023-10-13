@@ -38,9 +38,11 @@
 [core]
 	autocrlf = input
   excludesFile = ~/.gitignore
+  editor = vim
 
 [push]
 	default = simple
+	autoSetupRemote = true
 
 [pull]
 	rebase = true

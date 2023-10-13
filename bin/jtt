@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Starting JTT..."
+(
+  cd /opt/ergon/TableTool-getdown
+  ./run.sh
+)
+

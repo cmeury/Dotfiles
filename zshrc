@@ -149,6 +149,12 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # disable history sharing between sessions (https://github.com/ohmyzsh/ohmyzsh/issues/2537)
 unsetopt share_history
 
+# Bash style history (https://superuser.com/questions/380657/history-search-backward-working-differently-in-zsh-than-in-bash)
+bindkey "^[[5~" history-beginning-search-backward
+bindkey "^[[6~" history-beginning-search-forward
+bindkey "^[[A~" history-beginning-search-backward
+bindkey "^[[B~" history-beginning-search-forward
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -158,3 +164,11 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # direnv hook - https://direnv.net/
 eval "$(direnv hook zsh)"
+
+# rust
+. "$HOME/.cargo/env"
+
+# node version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

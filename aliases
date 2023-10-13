@@ -6,6 +6,7 @@ alias ls='ls -G'
 alias grep='grep --color=auto'
 alias ping='prettyping'
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude .wercker"
+alias bat='batcat'
 
 # various commands
 alias v='vagrant'
@@ -82,14 +83,7 @@ alias gs='git status'
 alias gskip='git push -o ci.skip'
 
 # dirs
-alias ci='cd ${HOME}/code/devops/infrastructure/'
-alias cit='cd ${HOME}/code/devops/infrastructure/terraform'
-alias cir='cd ${HOME}/code/devops/infrastructure/runbooks'
-alias cdd='cd ${HOME}/code/devops/deploy'
-alias cdc='cd ${HOME}/code/devops/cluster-services'
-alias cdb='cd ${HOME}/code/well-backend'
-alias cdf='cd ${HOME}/code/well-mobile-frontend'
+alias cda='cd ${HOME}/code/airlock-saas'
 
-# custom
-alias delgka='kubectl get -n=gitlab-agent po -l app=gitlab-agent -o=name | xargs kubectl delete -n=gitlab-agent'
-
+# todoist - https://github.com/alanvardy/tod
+alias t='tod -q'
