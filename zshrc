@@ -89,9 +89,6 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# fixing the error: 'there was a problem with the editor "vi"' when running kubectl edit
-export KUBE_EDITOR="vim"
-
 export GOPATH=$HOME/go
 
 path+=("$GOPATH/bin")
@@ -110,6 +107,12 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # export to sub-processes (make it inherited by child processes)
 export PATH
+
+# fixing the error: 'there was a problem with the editor "vi"' when running kubectl edit
+export KUBE_EDITOR="vim"
+
+# kubectl completion
+source <($HOME/google-cloud-sdk/bin/kubectl completion zsh)
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
