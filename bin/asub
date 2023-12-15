@@ -1,0 +1,22 @@
+#!/bin/sh
+# quick azure CLI subscription switcher
+
+set -eu
+
+if [ ! -x "$(which az 2>/dev/null)" ]; then
+  echo "please install the azure CLI clientl (https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)" >&2
+  exit 1
+fi
+if [ ! -x "$(which fzf 2>/dev/null)" ]; then
+  echo "please install fzf (https://github.com/junegunn/fzf)" >&2
+  exit 1
+fi
+
+current="$(az account show -o tsv --query "name")"
+selected=$( ( az account list -o tsv --query "[?name != '$current'].name"; echo "${current}" ) \
+            | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current> ")
+if [ -n "$selected" ]; then
+  az account set --subscription "${selected}"
+  new_current="$(az account show -o tsv --query "name")"
+  echo "Selected new subscription: ${new_current}"
+fi
