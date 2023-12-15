@@ -8,19 +8,19 @@
   show = diff-so-fancy | less --tabs=4 -RFX
 
 [alias]
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=7
-	lg = log --pretty=format:\"%C(red)%h%Creset %C(green)%ad%Creset | %s%C(yellow)%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=iso
-	co = checkout
-	ci = commit
-	st = status
-	sp = status --porcelain
-	br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=7
+  lg = log --pretty=format:\"%C(red)%h%Creset %C(green)%ad%Creset | %s%C(yellow)%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=iso
+  co = checkout
+  ci = commit
+  st = status
+  sp = status --porcelain
+  br = branch
   cp = cherry-pick
-	type = cat-file -t
-	dump = cat-file -p
+  type = cat-file -t
+  dump = cat-file -p
   wtf = blame
   staged = diff --cached --color
-
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
 
 [merge]
 	tool = meld
