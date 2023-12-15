@@ -9,6 +9,7 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclu
 alias bat='batcat'
 
 # various commands
+alias gw='./gradlew'
 alias v='vagrant'
 alias tf='terraform'
 alias tg='terragrunt'
