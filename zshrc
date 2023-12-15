@@ -114,6 +114,10 @@ export KUBE_EDITOR="vim"
 # kubectl completion
 source <($HOME/google-cloud-sdk/bin/kubectl completion zsh)
 
+# azure cli completion
+autoload -U +X bashcompinit && bashcompinit
+source ~/.bin/az.completion
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
