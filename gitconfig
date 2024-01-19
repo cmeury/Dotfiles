@@ -1,6 +1,6 @@
 [user]
 	name = Cedric Meury
-	email = cedric.meury@ergon.ch
+	email = cedric@meury.com
 
 # brew install diff-so-fancy
 [pager]
@@ -78,3 +78,6 @@
 	defaultBranch = main
 [commit]
 	gpgsign = false
+
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:ergon/**"]
+    path = ~/.gitconfig-ergon

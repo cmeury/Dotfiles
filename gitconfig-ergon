@@ -1,0 +1,6 @@
+[user]
+	name = Cedric Meury
+	email = cedric.meury@ergon.ch
+
+[commit]
+	gpgsign = true
