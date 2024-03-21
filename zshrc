@@ -1,3 +1,4 @@
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -78,7 +79,9 @@ export UPDATE_ZSH_DAYS=90
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker history)
 plugins+=(zsh-vi-mode)
-
+plugins+=(zsh-autocomplete)
+plugins+=(zsh-syntax-highlighting)
+zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,9 +113,6 @@ export PATH
 
 # fixing the error: 'there was a problem with the editor "vi"' when running kubectl edit
 export KUBE_EDITOR="vim"
-
-# kubectl completion
-source <($HOME/google-cloud-sdk/bin/kubectl completion zsh)
 
 # azure cli completion
 autoload -U +X bashcompinit && bashcompinit
@@ -179,3 +179,4 @@ eval "$(direnv hook zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
