@@ -81,3 +81,5 @@
 
 [includeIf "hasconfig:remote.*.url:git@gitlab.com:ergon/**"]
     path = ~/.gitconfig-ergon
+[includeIf "hasconfig:remote.*.url:git@stash.ergon.ch:*/**"]
+    path = ~/.gitconfig-ergon
