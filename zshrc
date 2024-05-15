@@ -79,9 +79,9 @@ export UPDATE_ZSH_DAYS=90
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker history)
 plugins+=(zsh-vi-mode)
-plugins+=(zsh-autocomplete)
+#plugins+=(zsh-autocomplete)
 plugins+=(zsh-syntax-highlighting)
-zstyle ':autocomplete:*' default-context history-incremental-search-backward
+#zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status)
+ZSH_HIGHLIGHT_STYLES[comment]='none'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
