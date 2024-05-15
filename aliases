@@ -16,8 +16,8 @@ alias tg='terragrunt'
 alias tgp='terragrunt plan'
 alias tga='terragrunt apply'
 alias tgar='terragrunt apply -refresh-only'
-alias tgary='terragrunt apply -refresh-only -auto-approve'
-alias tgay='terragrunt apply -auto-approve' # careful
+alias tgaa='terragrunt apply -auto-approve' # careful
+alias tgaar='terragrunt apply -refresh-only -auto-approve'
 alias gc='gcloud'
 alias gcca='gcloud config configurations activate'
 alias a='ansible'
@@ -35,6 +35,7 @@ alias egrep='egrep --color=auto'
 	
 # kubernetes
 alias k9r='HTTPS_PROXY=localhost:8888 k9s --readonly'
+alias kubectl='kubecolor' # https://github.com/kubecolor/kubecolor
 alias k='kubectl'
 alias kc='kubectl config'
 alias kpf='kubectl port-forward'
