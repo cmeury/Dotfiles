@@ -30,7 +30,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -54,7 +54,7 @@ export UPDATE_ZSH_DAYS=90
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -134,16 +134,6 @@ source ~/.bin/az.completion
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-source $HOME/.aliases
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -153,6 +143,18 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+# kubectl shell completion (https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#enable-shell-autocompletion)
+#autoload -U +X compinit && compinit
+#source <(kubectl completion zsh)
+
+# get zsh complete kubectl
+source <(kubectl completion zsh)
+
+# kubecolor - https://github.com/kubecolor/kubecolor
+alias kubectl=kubecolor
+# make completion work with kubecolor
+compdef kubecolor=kubectl
 
 # disable history sharing between sessions (https://github.com/ohmyzsh/ohmyzsh/issues/2537)
 unsetopt share_history
@@ -181,3 +183,93 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+## ALIASES ===================
+
+# system tools
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ls='ls -G'
+alias grep='grep --color=auto'
+alias ping='prettyping'
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude .wercker"
+alias bat='batcat'
+
+# various commands
+alias gw='./gradlew'
+alias v='vagrant'
+alias tf='terraform'
+alias tg='terragrunt'
+alias tgp='terragrunt plan'
+alias tga='terragrunt apply'
+alias tgar='terragrunt apply -refresh-only'
+alias tgaa='terragrunt apply -auto-approve' # careful
+alias tgaar='terragrunt apply -refresh-only -auto-approve'
+alias gc='gcloud'
+alias gcca='gcloud config configurations activate'
+alias a='ansible'
+alias ap='ansible-playbook'
+
+# editor
+alias vi='vim'
+
+# docker
+alias dr="docker run --rm -it"
+
+# grep
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+	
+# kubernetes
+alias k9r='HTTPS_PROXY=localhost:8888 k9s --readonly'
+alias k='kubectl'
+alias kc='kubectl config'
+alias kpf='kubectl port-forward'
+alias kex='kubectl exec -it'
+alias kgvs='kubectl get virtualservice'
+alias kev="kubectl get events --sort-by='.lastTimestamp'"
+alias kevs='kubectl edit virtualservice'
+alias kggw='kubectl get gateway'
+alias kegw='kubectl edit gateway'
+alias kgy='kubectl get -o yaml'
+alias kd='kubectl describe'
+alias kdel='kubectl delete'
+alias kkill='kubectl delete --force --grace-period=0 pod'
+alias kg='kubectl get'
+alias kgp='kubectl get pods -o wide'
+alias kgpt="kubectl get pods -o wide | grep -v -E '(Terminated|NodeShutdown)'"
+alias kgpa='kubectl get pods -o wide --all-namespaces'
+alias kgpar="kubectl get pods -o wide --all-namespaces | grep -v -E '(Running|Completed)'"
+alias kgps="kubectl get pods -o wide --all-namespaces --sort-by='{.status.containerStatuses[:1].restartCount}'"
+alias podgrep='kubectl get pods -o wide --all-namespaces | grep '
+alias svcgrep='kubectl get service --all-namespaces | grep '
+alias kl='kubectl logs --follow=true'
+alias i='istioctl'
+alias mk='minikube'
+
+# batcat
+alias ybat="bat -l yaml"
+yfilt() {
+  kfilt -i kind="${1}" | bat -l yaml
+}
+
+# jless
+alias yless="jless --yaml"
+
+# git
+alias g='git'
+alias gp='git pull'
+alias gs='git status'
+alias main='git checkout main'
+alias gskip='git push -o ci.skip'
+
+# dirs
+alias cda='cd ${HOME}/code/airlock-saas'
+
+# todoist - https://github.com/alanvardy/tod
+alias t='tod -q'
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
