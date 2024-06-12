@@ -1,12 +1,10 @@
 [user]
 	name = Cedric Meury
 	email = cedric@meury.com
-
 # brew install diff-so-fancy
 [pager]
   diff = diff-so-fancy | less --tabs=4 -RFX
   show = diff-so-fancy | less --tabs=4 -RFX
-
 [alias]
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=7
   lg = log --pretty=format:\"%C(red)%h%Creset %C(green)%ad%Creset | %s%C(yellow)%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=iso
@@ -21,32 +19,26 @@
   wtf = blame
   staged = diff --cached --color
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
-
 [merge]
 	tool = meld
-#	ff = false
-
 [mergetool]	
 	keepBackup = false
-
 [diff]
 	tool = meld
-
 [difftool]
 	prompt = false
-
 [core]
 	autocrlf = input
   excludesFile = ~/.gitignore
   editor = vim
-
 [push]
 	default = simple
 	autoSetupRemote = true
-
 [pull]
 	rebase = true
-#	ff = only
+[rebase]
+  autosquash = true
+  autostash = true
 [log]
 	date = local
 [url "https://"]
@@ -78,8 +70,9 @@
 	defaultBranch = main
 [commit]
 	gpgsign = false
-
 [includeIf "hasconfig:remote.*.url:git@gitlab.com:ergon/**"]
     path = ~/.gitconfig-ergon
 [includeIf "hasconfig:remote.*.url:git@stash.ergon.ch:*/**"]
     path = ~/.gitconfig-ergon
+[maintenance]
+	repo = /home/cmeury/code/airlock-saas
