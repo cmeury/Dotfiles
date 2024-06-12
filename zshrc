@@ -259,8 +259,6 @@ alias yless="jless --yaml"
 
 # git
 alias g='git'
-alias gp='git pull'
-alias gs='git status'
 alias main='git checkout main'
 alias gskip='git push -o ci.skip'
 
