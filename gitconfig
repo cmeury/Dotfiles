@@ -5,6 +5,19 @@
 [pager]
   diff = diff-so-fancy | less --tabs=4 -RFX
   show = diff-so-fancy | less --tabs=4 -RFX
+[diff]
+	tool = difftastic
+  external = difft
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+[merge]
+	tool = meld
+[mergetool]	
+	keepBackup = false
+[pager]
+  difftool = true
 [alias]
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=default --max-count=7
   lg = log --pretty=format:\"%C(red)%h%Creset %C(green)%ad%Creset | %s%C(yellow)%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=iso
@@ -19,14 +32,6 @@
   wtf = blame
   staged = diff --cached --color
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
-[merge]
-	tool = meld
-[mergetool]	
-	keepBackup = false
-[diff]
-	tool = meld
-[difftool]
-	prompt = false
 [core]
 	autocrlf = input
   excludesFile = ~/.gitignore
