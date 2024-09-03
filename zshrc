@@ -9,6 +9,9 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# fix https://stackoverflow.com/questions/25614613/how-to-disable-zsh-substitution-autocomplete-with-url-and-backslashes
+DISABLE_MAGIC_FUNCTIONS=true
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -220,7 +223,7 @@ alias dr="docker run --rm -it"
 # grep
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-	
+
 # kubernetes
 alias k9r='HTTPS_PROXY=localhost:8888 k9s --readonly'
 alias k='kubectl'
