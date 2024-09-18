@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v op &> /dev/null
+then
+    echo "!!! 1Password CLI could not be found. See: https://developer.1password.com/docs/cli/get-started"
+    exit 1
+fi
+
+if ! command -v openvpn &> /dev/null
+then
+    echo "!!! openvpn command could not be found."
+    exit 1
+fi
+
+# Create a temporary file and set trap
+temp_file=$(mktemp)
+trap 'rm -f "$temp_file"' EXIT
+
+# Populate VPN auth file
+op inject --in-file ~/vpn/auth.txt.template --out-file "${temp_file}" --force
+
+echo "+++ Using elevated permissions to create OpenVPN tunnel; prepare OTP token for Secure Login"
+sudo openvpn --config ~/vpn/cmeury-client.ovpn --config ~/vpn/vpn-additions.ovpn --auth-retry interact --auth-user-pass "${temp_file}" --auth-nocache
+
