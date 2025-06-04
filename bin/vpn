@@ -20,6 +20,9 @@ trap 'rm -f "$temp_file"' EXIT
 # Populate VPN auth file
 op inject --in-file ~/vpn/auth.txt.template --out-file "${temp_file}" --force
 
-echo "+++ Using elevated permissions to create OpenVPN tunnel; prepare OTP token for Secure Login"
+echo ""
+echo "+++ Using elevated permissions to create OpenVPN tunnel. OTP Token for Secure Login: ===> $(op item get gv73rvp5mxx3z6wjdqx3iievj4 --otp) <==="
+echo ""
+
 sudo openvpn --config ~/vpn/cmeury-client.ovpn --config ~/vpn/vpn-additions.ovpn --auth-retry interact --auth-user-pass "${temp_file}" --auth-nocache
 
