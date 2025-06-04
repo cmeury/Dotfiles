@@ -96,9 +96,12 @@ ZSH_HIGHLIGHT_STYLES[comment]='none'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
+#export GOROOT=/usr/local/go
+export GOROOT=/home/cmeury/code/airlock-saas/tools/go
 export GOPATH=$HOME/go
 
 path+=("$GOPATH/bin")
+path+=("$GOROOT/bin")
 path+=("$HOME/Library/Python/3.8/bin")
 path+=("$HOME/.local/bin")
 path=('/usr/local/opt/gnu-tar/libexec/gnubin' $path)  # GNU tools from homebrew
@@ -179,12 +182,16 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 eval "$(direnv hook zsh)"
 
 # rust
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Terragrunt Cache
+export TG_PROVIDER_CACHE_DIR="${HOME}/.terragrunt-provider-cache"
+export TG_PROVIDER_CACHE=1
 
 
 ## ALIASES ===================
@@ -231,6 +238,10 @@ alias kc='kubectl config'
 alias kpf='kubectl port-forward'
 alias kex='kubectl exec -it'
 alias kgvs='kubectl get virtualservice'
+alias kgd='kubectl get deployments.iam.cloud.airlock.com'
+alias kgdy='kubectl get deployments.iam.cloud.airlock.com -o yaml'
+alias kgr='kubectl get deploymentrevisions.iam.cloud.airlock.com'
+alias kgry='kubectl get deploymentrevisions.iam.cloud.airlock.com -o yaml'
 alias kev="kubectl get events --sort-by='.lastTimestamp'"
 alias kevs='kubectl edit virtualservice'
 alias kggw='kubectl get gateway'
@@ -241,6 +252,7 @@ alias kdel='kubectl delete'
 alias kkill='kubectl delete --force --grace-period=0 pod'
 alias kg='kubectl get'
 alias kgp='kubectl get pods -o wide'
+alias kgiam='kubectl get pods --selector app.kubernetes.io/name=airlock-iam --all-namespaces'
 alias kgpt="kubectl get pods -o wide | grep -v -E '(Terminated|NodeShutdown)'"
 alias kgpa='kubectl get pods -o wide --all-namespaces'
 alias kgpar="kubectl get pods -o wide --all-namespaces | grep -v -E '(Running|Completed)'"
