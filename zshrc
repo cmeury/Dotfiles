@@ -110,10 +110,11 @@ path=("$HOME/bin" $path)                              # ensure we are using exec
 path=("$HOME/Dotfiles/bin" $path)                              # ensure we are using executables in home dir before system ones
 path+=("$HOME/code/devops/infrastructure/runbooks/connect")
 path+=("$HOME/code/devops/infrastructure/runbooks/psql-debug")
+path+=("/opt/idea-IU-242.21829.142/bin") # work laptop
 path+=("${KREW_ROOT:-$HOME/.krew}/bin")
-
-
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+
 
 # export to sub-processes (make it inherited by child processes)
 export PATH
@@ -124,6 +125,9 @@ export KUBE_EDITOR="vim"
 # azure cli completion
 autoload -U +X bashcompinit && bashcompinit
 source ~/.bin/az.completion
+
+# stern completion
+command -v stern &> /dev/null && source <(stern --completion=zsh)
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
