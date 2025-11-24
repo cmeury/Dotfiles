@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Configuration
+readonly VPN_DIR="${HOME}/vpn"
+readonly VPN_CONFIG="${VPN_DIR}/cmeury-client.ovpn"
+readonly VPN_ADDITIONS="${VPN_DIR}/vpn-additions.ovpn"
+readonly AUTH_TEMPLATE="${VPN_DIR}/auth.txt.template"
+readonly ONEPASSWORD_ITEM_ID="gv73rvp5mxx3z6wjdqx3iievj4"
+
+# Check required commands
 if ! command -v op &> /dev/null
 then
     echo "!!! 1Password CLI could not be found. See: https://developer.1password.com/docs/cli/get-started"
@@ -24,14 +32,14 @@ temp_file=$(mktemp)
 trap 'rm -f "$temp_file"' EXIT
 
 # Populate VPN auth file
-op inject --in-file ~/vpn/auth.txt.template --out-file "${temp_file}" --force
+op inject --in-file "${AUTH_TEMPLATE}" --out-file "${temp_file}" --force
 
 echo ""
 echo "+++ Using elevated permissions to create OpenVPN tunnel."
 echo ""
 
 # Get OTP token from 1Password first
-OTP=$(op item get gv73rvp5mxx3z6wjdqx3iievj4 --otp)
+OTP=$(op item get "${ONEPASSWORD_ITEM_ID}" --otp)
 
 # Use expect to automate OTP entry:
 # 1. Spawn openvpn with sudo and auth credentials
@@ -40,7 +48,7 @@ OTP=$(op item get gv73rvp5mxx3z6wjdqx3iievj4 --otp)
 # 4. Hand control back to user with 'interact' to keep tunnel running
 expect -c "
 set timeout -1
-spawn sudo openvpn --config $HOME/vpn/cmeury-client.ovpn --config $HOME/vpn/vpn-additions.ovpn --auth-retry interact --auth-user-pass ${temp_file} --auth-nocache
+spawn sudo openvpn --config ${VPN_CONFIG} --config ${VPN_ADDITIONS} --auth-retry interact --auth-user-pass ${temp_file} --auth-nocache
 expect \"CHALLENGE: Please enter next token.\"
 send \"${OTP}\r\"
 interact
