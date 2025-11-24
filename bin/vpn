@@ -13,6 +13,12 @@ then
     exit 1
 fi
 
+if ! command -v expect &> /dev/null
+then
+    echo "!!! expect command could not be found. Install with: sudo apt-get install expect"
+    exit 1
+fi
+
 # Create a temporary file and set trap
 temp_file=$(mktemp)
 trap 'rm -f "$temp_file"' EXIT
@@ -21,8 +27,22 @@ trap 'rm -f "$temp_file"' EXIT
 op inject --in-file ~/vpn/auth.txt.template --out-file "${temp_file}" --force
 
 echo ""
-echo "+++ Using elevated permissions to create OpenVPN tunnel. OTP Token for Secure Login: ===> $(op item get gv73rvp5mxx3z6wjdqx3iievj4 --otp) <==="
+echo "+++ Using elevated permissions to create OpenVPN tunnel."
 echo ""
 
-sudo openvpn --config ~/vpn/cmeury-client.ovpn --config ~/vpn/vpn-additions.ovpn --auth-retry interact --auth-user-pass "${temp_file}" --auth-nocache
+# Get OTP token from 1Password first
+OTP=$(op item get gv73rvp5mxx3z6wjdqx3iievj4 --otp)
+
+# Use expect to automate OTP entry:
+# 1. Spawn openvpn with sudo and auth credentials
+# 2. Wait for "CHALLENGE: Please enter next token." prompt
+# 3. Send the pre-fetched OTP to stdin
+# 4. Hand control back to user with 'interact' to keep tunnel running
+expect -c "
+set timeout -1
+spawn sudo openvpn --config $HOME/vpn/cmeury-client.ovpn --config $HOME/vpn/vpn-additions.ovpn --auth-retry interact --auth-user-pass ${temp_file} --auth-nocache
+expect \"CHALLENGE: Please enter next token.\"
+send \"${OTP}\r\"
+interact
+"
 
