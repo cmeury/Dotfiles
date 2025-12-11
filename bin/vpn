@@ -43,14 +43,24 @@ OTP=$(op item get "${ONEPASSWORD_ITEM_ID}" --otp)
 
 # Use expect to automate OTP entry:
 # 1. Spawn openvpn with sudo and auth credentials
-# 2. Wait for "CHALLENGE: Please enter next token." prompt
-# 3. Send the pre-fetched OTP to stdin
-# 4. Hand control back to user with 'interact' to keep tunnel running
+# 2. Handle sudo password prompt (if fingerprint fails) without echoing
+# 3. Wait for "CHALLENGE: Please enter next token." prompt
+# 4. Send the pre-fetched OTP to stdin
+# 5. Hand control back to user with 'interact' to keep tunnel running
 expect -c "
 set timeout -1
 spawn sudo openvpn --config ${VPN_CONFIG} --config ${VPN_ADDITIONS} --auth-retry interact --auth-user-pass ${temp_file} --auth-nocache
-expect \"CHALLENGE: Please enter next token.\"
-send \"${OTP}\r\"
-interact
+expect {
+    \"*password*\" {
+        stty -echo
+        interact -o \"\r\" return
+        stty echo
+        exp_continue
+    }
+    \"CHALLENGE: Please enter next token.\" {
+        send \"${OTP}\r\"
+        interact
+    }
+}
 "
 
