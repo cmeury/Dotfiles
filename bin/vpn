@@ -2,30 +2,21 @@
 set -euo pipefail
 
 # Configuration
-readonly VPN_DIR="${HOME}/vpn"
-readonly VPN_CONFIG="${VPN_DIR}/cmeury-client.ovpn"
-readonly VPN_ADDITIONS="${VPN_DIR}/vpn-additions.ovpn"
-readonly AUTH_TEMPLATE="${VPN_DIR}/auth.txt.template"
-readonly ONEPASSWORD_ITEM_ID="gv73rvp5mxx3z6wjdqx3iievj4"
+VPN_DIR="${HOME}/vpn"
+VPN_CONFIG="${VPN_DIR}/cmeury-client.ovpn"
+VPN_ADDITIONS="${VPN_DIR}/vpn-additions.ovpn"
+AUTH_TEMPLATE="${VPN_DIR}/auth.txt.template"
+ONEPASSWORD_ITEM_ID="gv73rvp5mxx3z6wjdqx3iievj4"
 
 # Check required commands
-if ! command -v op &> /dev/null
-then
-    echo "!!! 1Password CLI could not be found. See: https://developer.1password.com/docs/cli/get-started"
-    exit 1
-fi
+for cmd in op openvpn expect; do
+    command -v "$cmd" &>/dev/null || { echo "Missing required command: $cmd"; exit 1; }
+done
 
-if ! command -v openvpn &> /dev/null
-then
-    echo "!!! openvpn command could not be found."
-    exit 1
-fi
-
-if ! command -v expect &> /dev/null
-then
-    echo "!!! expect command could not be found. Install with: sudo apt-get install expect"
-    exit 1
-fi
+# Check required files
+for f in "$VPN_CONFIG" "$VPN_ADDITIONS" "$AUTH_TEMPLATE"; do
+    [[ -f "$f" ]] || { echo "Missing: $f"; exit 1; }
+done
 
 # Create a temporary file and set trap
 temp_file=$(mktemp)
