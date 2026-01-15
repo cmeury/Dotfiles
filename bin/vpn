@@ -4,6 +4,7 @@ set -euo pipefail
 # Configuration
 VPN_DIR="${HOME}/vpn"
 VPN_CONFIG="${VPN_DIR}/cmeury-client.ovpn"
+#VPN_CONFIG="${VPN_DIR}/cmeury-client-fallback.ovpn"
 VPN_ADDITIONS="${VPN_DIR}/vpn-additions.ovpn"
 AUTH_TEMPLATE="${VPN_DIR}/auth.txt.template"
 ONEPASSWORD_ITEM_ID="gv73rvp5mxx3z6wjdqx3iievj4"
