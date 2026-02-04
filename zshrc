@@ -197,6 +197,14 @@ export NVM_DIR="$HOME/.nvm"
 export TG_PROVIDER_CACHE_DIR="${HOME}/.terragrunt-provider-cache"
 export TG_PROVIDER_CACHE=1
 
+# Jira CLI
+export JIRA_AUTH_TYPE=bearer
+if [[ -f ~/.jira/token ]]; then
+  export JIRA_API_TOKEN=$(<~/.jira/token)
+else
+  echo "JIRA_API_TOKEN not set. Run: mkdir -p ~/.jira && op item get kpwdlzgclzvsojrtvpzvedxoii --reveal --fields password > ~/.jira/token"
+fi
+
 
 ## ALIASES ===================
 
