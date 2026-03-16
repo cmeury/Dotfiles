@@ -193,10 +193,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Terragrunt Cache
-export TG_PROVIDER_CACHE_DIR="${HOME}/.terragrunt-provider-cache"
-export TG_PROVIDER_CACHE=1
-
 # Jira CLI
 export JIRA_AUTH_TYPE=bearer
 if [[ -f ~/.jira/token ]]; then
