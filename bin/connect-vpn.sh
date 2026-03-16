@@ -13,3 +13,6 @@ printf "{{ ${ENTRY}/password }}\n{{ ${ENTRY}/one-time password?attribute=otp }}"
     --user="$(op --account="${ACCOUNT}" read "${ENTRY}/username")" \
     https://remote.ergon.ch:30001
 
+# When connection problems to internal service occur, try adding --mtu=1300 to the openconnect call, but only if your ISP is using some kind of doubled tunnel
+
+
