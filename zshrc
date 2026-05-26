@@ -193,13 +193,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Jira CLI
-export JIRA_AUTH_TYPE=bearer
-if [[ -f ~/.jira/token ]]; then
-  export JIRA_API_TOKEN=$(<~/.jira/token)
-else
-  echo "JIRA_API_TOKEN not set. Run: mkdir -p ~/.jira && op item get kpwdlzgclzvsojrtvpzvedxoii --reveal --fields password > ~/.jira/token"
-fi
+
 
 
 ## ALIASES ===================
